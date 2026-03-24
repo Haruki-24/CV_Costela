@@ -40,19 +40,20 @@ body {
     background-color: var(--color-background-paper);
     padding: 15mm;
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    border-radius: 4px; /* Un toque sutil para que parezca papel real */
+    border-radius: 4px;
 }
 
 /* 4. HEADER PROFESIONAL */
 .header {
     background-color: var(--color-highlight);
     color: #ffffff;
-    padding: 25px;
+    padding: 25px 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-radius: 8px;
-    margin-bottom: 25px;
+    border-radius: 12px;
+    width: var(--p-width); /* Mismo ancho que el contenedor */
+    margin: 20px auto 0 auto;
 }
 
 .header-info {
@@ -75,39 +76,38 @@ body {
 }
 
 .job-subtitle {
-    font-size: 1em;
+    font-size: 1.1em;
     font-weight: 300;
-    opacity: 0.8;
+    margin-bottom: 15px;
+    opacity: 0.9;
 }
 
 .contact-info {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
-    margin-top: 10px;
+    margin: 5px 0;
     font-size: 0.85em;
 }
 
-.contact-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.contact-item img {
+.contact-info .icon {
     width: 16px;
     height: 16px;
+    margin-right: 4px;
+    vertical-align: middle;
     filter: brightness(0) invert(1); /* Iconos blancos */
 }
 
 /* 5. IMAGEN DE PERFIL */
 .profile-image-container {
-    width: 130px;
-    height: 130px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     overflow: hidden;
-    border: 4px solid rgba(255,255,255,0.2);
+    border: 4px solid rgba(255,255,255,0.3);
     margin-left: 20px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .profile-image {
@@ -119,8 +119,16 @@ body {
 /* 6. LAYOUT DE COLUMNAS (GRID) */
 .main-content-columns {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 2fr; /* 1/3 y 2/3 */
     gap: 30px;
+}
+
+.column {
+    padding: 10px 0;
+}
+
+.section {
+    margin-bottom: 25px;
 }
 
 .section-title {
@@ -134,21 +142,41 @@ body {
 }
 
 /* 7. ELEMENTOS DE LISTA Y ITEMS */
-.item { margin-bottom: 15px; }
-.item h3 { font-size: 1.1em; margin: 0; color: #222; }
-.item h4 { font-size: 1em; margin: 2px 0; color: var(--color-highlight); }
-.item p { font-size: 0.9em; margin: 5px 0; color: var(--color-text-secondary); }
+.item { margin-bottom: 18px; }
+
+.item h3 { 
+    font-size: 1.1em; 
+    margin: 0 0 5px 0; 
+    color: var(--color-highlight); 
+    font-weight: 700;
+}
+
+.item h4 { 
+    font-size: 1em; 
+    margin: 0 0 3px 0; 
+    color: #222; 
+    font-weight: 600;
+}
+
+.item p { 
+    font-size: 0.9em; 
+    margin: 0 0 8px 0; 
+    color: var(--color-text-secondary); 
+    font-style: italic;
+}
 
 .item ul {
     list-style: none;
     padding: 0;
+    margin: 5px 0;
 }
 
 .item ul li {
     font-size: 0.85em;
     padding-left: 15px;
     position: relative;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
+    color: var(--color-text-secondary);
 }
 
 .item ul li::before {
@@ -160,8 +188,8 @@ body {
 }
 
 /* 8. AJUSTES PARA MÓVILES (WEB) */
-@media (max-width: 768px) {
-    .container {
+@media (max-width: 850px) {
+    .header, .container {
         width: 95%;
         margin: 10px auto;
         padding: 20px;
@@ -173,22 +201,31 @@ body {
     }
     
     .profile-image-container {
-        margin: 15px 0 0 0;
+        margin: 20px 0 0 0;
     }
     
     .main-content-columns {
         grid-template-columns: 1fr;
+    }
+
+    .contact-info {
+        justify-content: center;
     }
 }
 
 /* 9. AJUSTES PARA IMPRESIÓN (PDF) */
 @media print {
     body { background-color: white; }
-    .container {
+    .header, .container {
         width: 100%;
         margin: 0;
         box-shadow: none;
-        padding: 0;
+        border-radius: 0;
     }
-    .print-btn { display: none; }
+    .header {
+        padding: 15mm; /* Ajuste para que coincida con el padding del container */
+    }
+    .profile-image-container {
+        border: 2px solid #eee;
+    }
 }
