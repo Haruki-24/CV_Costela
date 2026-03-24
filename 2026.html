@@ -1,0 +1,157 @@
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gonzalo Costela - Data Scientist Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        :root {
+            --color-text-primary: #333;
+            --color-text-secondary: #555;
+            --color-highlight: #134261;
+            --color-background-primary: #f4f4f4;
+            --color-background-secondary: #ffffff;
+            --font-family-paragraph: 'Inter', sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-family-paragraph);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: var(--color-background-primary);
+            color: var(--color-text-primary);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--color-background-secondary);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background-color: var(--color-highlight);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .name { font-size: 2.5em; margin: 0; font-weight: 700; }
+        .job-title { font-size: 1.5em; color: #a5d8ff; margin: 5px 0; }
+        
+        .contact-info {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid rgba(255,255,255,0.2);
+            object-fit: cover;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+        }
+
+        .section-title {
+            color: var(--color-highlight);
+            border-bottom: 2px solid var(--color-highlight);
+            text-transform: uppercase;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+        }
+
+        .item h3 { margin: 0; color: #222; font-size: 1.1em; }
+        .item p { margin: 2px 0 10px 0; color: var(--color-text-secondary); font-size: 0.9em; }
+        
+        ul { padding-left: 20px; margin: 10px 0; }
+        li { font-size: 0.9em; margin-bottom: 5px; }
+
+        @media (max-width: 768px) {
+            .main-content { grid-template-columns: 1fr; }
+            .header { text-align: center; justify-content: center; }
+        }
+
+        /* Estilo para impresión si el usuario lo desea */
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; max-width: 100%; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <div class="header-info">
+                <h1 class="name">GONZALO COSTELA</h1>
+                <div class="job-title">DATA SCIENTIST</div>
+                <div class="contact-info">
+                    <span>📍 Guadalajara</span> | 
+                    <span>📧 gcostela.pdc@gmail.com</span> | 
+                    <span>🔗 linkedin.com/in/gonzalocostela</span>
+                </div>
+            </div>
+            <img src="https://via.placeholder.com/150" alt="Gonzalo Costela" class="profile-img">
+        </header>
+
+        <div class="main-content">
+            <aside>
+                <section>
+                    <h2 class="section-title">Certificaciones</h2>
+                    <div class="item">
+                        <h3>Idiomas</h3>
+                        <ul><li>Inglés B2</li><li>Español (Nativo)</li></ul>
+                    </div>
+                </section>
+                <section>
+                    <h2 class="section-title">Tech Stack</h2>
+                    <ul>
+                        <li>Python / SQL</li>
+                        <li>GCP / Docker</li>
+                        <li>XGBoost / CatBoost</li>
+                    </ul>
+                </section>
+            </aside>
+
+            <main>
+                <section>
+                    <h2 class="section-title">Experiencia</h2>
+                    <div class="item">
+                        <h3>ML Engineer - NoCountry</h3>
+                        <p>2025 - 2026</p>
+                        <ul>
+                            <li>Optimización de Recall al 85% mediante modelos en cascada.</li>
+                            <li>Despliegue de infraestructura contenerizada en GCP.</li>
+                        </ul>
+                    </div>
+                    <!-- Agregar más items aquí -->
+                </section>
+            </main>
+        </div>
+    </div>
+
+</body>
+</html>
