@@ -1,10 +1,11 @@
-
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gonzalo Costela - Data Scientist Portfolio</title>
+    <title>Curriculum Vitae - Gonzalo Costela</title>
     <style>
+        /* --- TUS ESTILOS PERSONALIZADOS --- */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
         :root {
@@ -14,144 +15,344 @@
             --color-background-primary: #f4f4f4;
             --color-background-secondary: #ffffff;
             --font-family-paragraph: 'Inter', sans-serif;
+            --font-family-heading-primary: 'Inter', sans-serif;
+            --font-family-heading-secondary: 'Inter', sans-serif;
+            --font-family-heading-tertiary: 'Inter', sans-serif;
+            
+            /* Ajustes para Impresión A4 */
+            --page-width: 210mm;
+            --page-height: 297mm;
         }
 
-        * { box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+            print-color-adjust: exact;
+        }
 
         body {
             font-family: var(--font-family-paragraph);
-            line-height: 1.6;
+            line-height: 1.4;
             margin: 0;
-            padding: 20px;
-            background-color: var(--color-background-primary);
+            padding: 0;
+            background-color: #dcdde1; /* Fondo para distinguir el papel en pantalla */
             color: var(--color-text-primary);
+            -webkit-font-smoothing: antialiased;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: var(--color-background-secondary);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        /* Contenedor tamaño A4 */
+        .page {
+            width: var(--page-width);
+            min-height: var(--page-height);
+            margin: 10mm auto;
+            background-color: var(--color-background-secondary);
+            padding: 15mm;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
+        /* Estilos del encabezado con tus variables */
         .header {
             background-color: var(--color-highlight);
-            color: white;
-            padding: 30px;
-            border-radius: 12px;
+            color: #fff;
+            padding: 20px 30px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            gap: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
         }
 
-        .name { font-size: 2.5em; margin: 0; font-weight: 700; }
-        .job-title { font-size: 1.5em; color: #a5d8ff; margin: 5px 0; }
-        
-        .contact-info {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            font-size: 0.9em;
+        .header-info {
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .name {
+            font-family: var(--font-family-heading-primary);
+            font-size: 2.2em;
+            margin: 0 0 5px 0;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .job-title {
+            font-family: var(--font-family-heading-secondary);
+            font-size: 1.4em;
+            font-weight: 700;
+            margin: 0 0 5px 0;
             opacity: 0.9;
         }
 
-        .profile-img {
-            width: 150px;
-            height: 150px;
+        .job-subtitle {
+            font-family: var(--font-family-paragraph);
+            font-size: 1em;
+            font-weight: 300;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .contact-info {
+            font-size: 0.85em;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 5px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Simulación de iconos si no cargan las imágenes */
+        .icon {
+            width: 16px;
+            height: 16px;
+            filter: brightness(0) invert(1); /* Hace los iconos blancos */
+        }
+
+        .profile-image-container {
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            border: 5px solid rgba(255,255,255,0.2);
+            overflow: hidden;
+            background-color: var(--color-background-secondary);
+            border: 4px solid rgba(255,255,255,0.3);
+            flex-shrink: 0;
+            margin-left: 20px;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
 
-        .main-content {
+        /* Columnas con tus estilos */
+        .main-content-columns {
             display: grid;
             grid-template-columns: 1fr 2fr;
-            gap: 40px;
+            gap: 20px;
+        }
+
+        .column {
+            padding: 5px;
+        }
+
+        .left-column {
+            background-color: #f8f9fa; /* Un tono muy leve para diferenciar */
+            padding: 15px;
+            border-radius: 8px;
         }
 
         .section-title {
+            font-family: var(--font-family-heading-secondary);
+            font-size: 1.2em;
             color: var(--color-highlight);
             border-bottom: 2px solid var(--color-highlight);
-            text-transform: uppercase;
-            font-size: 1.2em;
+            padding-bottom: 3px;
             margin-bottom: 15px;
-            padding-bottom: 5px;
+            font-weight: 600;
+            text-transform: uppercase;
         }
 
-        .item h3 { margin: 0; color: #222; font-size: 1.1em; }
-        .item p { margin: 2px 0 10px 0; color: var(--color-text-secondary); font-size: 0.9em; }
-        
-        ul { padding-left: 20px; margin: 10px 0; }
-        li { font-size: 0.9em; margin-bottom: 5px; }
-
-        @media (max-width: 768px) {
-            .main-content { grid-template-columns: 1fr; }
-            .header { text-align: center; justify-content: center; }
+        .item {
+            margin-bottom: 12px;
         }
 
-        /* Estilo para impresión si el usuario lo desea */
+        .item h3 {
+            font-size: 1.1em;
+            margin-bottom: 3px;
+            color: var(--color-highlight);
+            font-weight: 600;
+        }
+
+        .item p {
+            margin: 0 0 3px 0;
+            font-size: 0.9em;
+            color: var(--color-text-secondary);
+            font-weight: 600;
+        }
+
+        .item ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .item ul li {
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 3px;
+            font-size: 0.85em;
+            color: var(--color-text-secondary);
+        }
+
+        .item ul li::before {
+            content: '•';
+            color: var(--color-highlight);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Ajustes específicos para Impresión */
         @media print {
-            body { background: white; padding: 0; }
-            .container { box-shadow: none; max-width: 100%; padding: 0; }
+            body { background: none; }
+            .page { margin: 0; box-shadow: none; width: 100%; }
+            .no-print { display: none; }
+        }
+
+        /* Botón de impresión */
+        .print-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: var(--color-highlight);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 100;
         }
     </style>
-</head>
 <body>
+    <header class="header">
+        <div class="header-info">
+            <h1 class="name">GONZALO COSTELA</h1><!-- Nombre candidato -->
+            <h2 class="job-title">DATA SCIENTIST </h2><!-- Título principal roles de experiencia -->
+            <h3 class="job-subtitle">Machine Learning Engineer | Business Analyst </h3><!-- Título secundario Habiliades principales del rol -->
+            
+            <p class="contact-info">
+                <img src="../Imagenes/logo_ubicacion.png" alt="Location icon" class="icon"> Guadalajara,Mexico <!-- Pais, Localidad, Ubicacion -->
+                <img src="../Imagenes/logo_whatsapp.png" alt="WhatsApp icon" class="icon"> WA: +52 984 501 5915 <!-- Whatsapp -->
+                <img src="../Imagenes/logo_email.png" alt="Email icon" class="icon"> gonzalocostela@gmail.com <!-- Email principal del candidato-->
+            </p>
+            <p class="contact-info">
+                <img src="../Imagenes/logo_linkedin.png" alt="Linkedin icon" class="icon"> linkedin.com/in/gonzalocostela<!-- Linkedin del candidato -->
+                <img src="../Imagenes/logo_github_2.png" alt="GitHub icon" class="icon"> github.com/haruki-24<!-- GitHub del candidato -->
+            </p>
+        </div>
+        <div class="profile-image-container">
+            <!-- Placeholder para la imagen de perfil -->
+            <img src="../Imagenes/foto_perfil.jpg" alt="Imagen de perfil de Gonzalo Costela" class="profile-image">
+        </div>
+    </header>
 
-    <div class="container">
-        <header class="header">
-            <div class="header-info">
-                <h1 class="name">GONZALO COSTELA</h1>
-                <div class="job-title">DATA SCIENTIST</div>
-                <div class="contact-info">
-                    <span>📍 Guadalajara</span> | 
-                    <span>📧 gcostela.pdc@gmail.com</span> | 
-                    <span>🔗 linkedin.com/in/gonzalocostela</span>
-                </div>
-            </div>
-            <img src="https://via.placeholder.com/150" alt="Gonzalo Costela" class="profile-img">
-        </header>
+    <main class="container">
+        <div class="main-content-columns">
+            <!-- Columna Izquierda: Desarrollo Personal (1/3 de ancho) -->
+            <div class="column left-column">
 
-        <div class="main-content">
-            <aside>
-                <section>
-                    <h2 class="section-title">Certificaciones</h2>
+                <section class="section">
+                    <h3 class="section-title">Certificaciones</h3><!-- Titulo de sección-->
                     <div class="item">
+                                
                         <h3>Idiomas</h3>
-                        <ul><li>Inglés B2</li><li>Español (Nativo)</li></ul>
-                    </div>
-                </section>
-                <section>
-                    <h2 class="section-title">Tech Stack</h2>
-                    <ul>
-                        <li>Python / SQL</li>
-                        <li>GCP / Docker</li>
-                        <li>XGBoost / CatBoost</li>
-                    </ul>
-                </section>
-            </aside>
-
-            <main>
-                <section>
-                    <h2 class="section-title">Experiencia</h2>
-                    <div class="item">
-                        <h3>ML Engineer - NoCountry</h3>
-                        <p>2025 - 2026</p>
                         <ul>
-                            <li>Optimización de Recall al 85% mediante modelos en cascada.</li>
-                            <li>Despliegue de infraestructura contenerizada en GCP.</li>
+                            <li><strong>Inglés B2</strong></li>
+                        </ul>
+                        
+                        <h3>Desarrollo Profesional y Programación</h3>
+                        <ul>
+                            <li><strong>Oracle Cloud Infrastructure: Certificación OCI Foundations</strong> (Oracle, 2025)</li>
+                            <li><strong>Emprendimiento, Agilidad y Protagonismo Profesional G8 - ONE</strong> (Alura Latam, 2025)</li>
+                            <li><strong>Lógica de Programación: JavaScript</strong> (Alura Latam, 2025)</li>
                         </ul>
                     </div>
-                    <!-- Agregar más items aquí -->
                 </section>
-            </main>
-        </div>
-    </div>
+                
+                <section class="section">
+                    <h3 class="section-title">Educación</h3>
+                    <div class="item">
+                        <h4>Oracle Next Education G8 - Alura Latam</h4>
+                        <p>Data Scientist, 2025</p>
+                    </div>
+                    <div class="item">
+                        <h4>Universidad Nacional de la Patagonia Austral</h4>
+                        <p>Ing. Electromecánica (4to año), 2022</p>
+                    </div>
+                </section>   
+                
+                <section class="section">
+                        <h3 class="section-title">Competencias</h2>
 
+                        <h3>Stack Tech</h3>
+                            <ul>
+                                <li><strong>Python</strong> (Pandas, NumPy, scikit-learn)</li>
+                                <li><strong>Desarrollo Web Básico: </strong>JavaScript, HTML, CSS</li>
+                                <li><strong>Oracle ERP</strong>: Experiencia de usuario (Gestión de inventarios, Compras, Creación de ítems, Reportes)</li>
+                                <li><strong>Microsoft Excel (Avanzado)</strong>: Tablas dinámicas, Macros, VBA, Creación de Dashboards</li>
+                            </ul>
+
+                        <h3>Soft Skills:</h3>
+                            <ul>
+                                <li><strong>Resolución de Problemas</strong></li>
+                                <li><strong>Comunicación asertiva</strong></li>
+                                <li><strong>Trabajo en equipo y adaptabilidad</strong></li>
+                                <li><strong>Pensamiento Crítico</strong></li>
+                                <li><strong>Optimización de Procesos</strong></li>
+                            </ul>
+                        </section>
+            </div>
+
+            <!-- Columna Derecha: Extracto y Experiencia (2/3 de ancho) -->
+            <div class="column right-column">
+                <section class="section">
+                    <h2 class="section-title">Perfil</h2>
+                    <p>Data Scientist & Business Analyst con más de 10 años liderando proyectos. 
+                    Aporto resiliencia y adaptabilidad (Japón, México, Argentina) 
+                    junto a una mentalidad orientada a la rentabilidad y eficiencia operativa (Oil & Gas).</p>
+                    <p>Busco integrarme al sector IT para aplicar mis competencias en Data Science y automatización, 
+                    garantizando soluciones escalables y alineadas a los objetivos estratégicos de la organización.</p>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Experiencia</h2>
+                     <div class="item">
+                        <h3>Auditor Interno - REGALOS ESTEFANIA</h3>
+                        <p>Julio 2025 - Actual</p>
+                        <ul>Identificación de inconsistencias en reportes de ingresos, (1 millón MXN) y saneamiento de cuentas</ul>
+                        <ul>Estandarización de procesos y asignación de roles, reducción de errores logísticos y transparencia operativa.</ul>
+                    </div>
+                    <div class="item">
+                        <h3>Cloud & Data Science Engineer - Hackatoon NoCountry (Krypton)</h3>
+                        <p>Diciembre 2025 - Enero 2026</p>
+                        <ul>Finalista en la primera participacion de una simulacion laboral</ul>
+                        <ul>ML Engineer: Desarrollo de una solución de modelos en cascada (XGBoost + CatBoost), optimizando el recall del 70% al 85% para maximizar la detección de posibles cancelaciones de clientes.</ul>
+                        <ul>Infrastructure Lead (GCP): Diseñé e implementación de arquitectura en Google Cloud, instancias en Compute Engine con aplicaciones contenerizadas (Docker) y Balanceadores de Carga para asegurar escalabilidad e IP fija.</ul>
+                    </div>
+                    <div class="item">
+                        <h3>Working Holiday en Japón</h3>
+                        <p>Mayo 2023 - Abril 2024</p>
+                        <ul>Adaptabilidad: Viví por un año en Japón, sin conocimiento de idiomas, pude trabajar, desarrollé nuevas habilidades
+                            aprendí a comunicarme en inglés y un poco de japonés.
+                        </ul>
+                    </div>
+                    <div class="item">
+                        <h3>Ingeniero de aplicaciones y ventas - CHAMPIONX</h3>
+                        <p>Enero 2020 - Abril 2023</p>
+                        <ul>Desarrollo de una base de datos histórica y Dashboard interactivo para el monitoreo de +350 pozos.</ul>
+                        <ul>Recuperación de clientes mediante la mejora en la calidad de reportes digitales y gestión de equipos.</ul>
+                        <ul>Elaboración de propuestas económicas, coordinación técnica y operativa de la base en Santa Cruz.</ul>
+                    </div>
+                    <div class="item">
+                        <h3>Responsable de administración y depósitos - APERGY</h3>
+                        <p>Julio 2015 - Diciembre 2019</p>
+                        <ul>Reducción de Discrepancias de Inventario e Integración con Oracle</ul>
+                        <ul>Saneamiento Financiero y Optimización de Cuentas Corrientes de proveedores, reduciendo
+                            costos operativos</ul>
+                    </div>
+
+                </section>
+
+            </div>
+        </div>
+    </main>
 </body>
 </html>
