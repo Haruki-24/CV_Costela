@@ -1,309 +1,194 @@
-/* Importa la fuente Inter de Google Fonts */
+/* 1. IMPORTACIÓN Y VARIABLES */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
-/* Definición de Variables CSS */
 :root {
-    /* Colores */
-    --color-text-primary: #333; /* Color de texto general */
-    --color-text-secondary: #555; /* Color de texto secundario (ej. descripciones, fechas) */
-    --color-highlight: #134261; /* Color para títulos de sección, enlaces, etc. (azul) */
-    --color-background-primary: #f4f4f4; /* Fondo principal del cuerpo */
-    --color-background-secondary: #ffffff; /* Fondo para contenedores y columnas */
-
-    /* Fuentes */
-    --font-family-paragraph: 'Inter', sans-serif; /* Fuente para párrafos y listas */
-    --font-family-heading-primary: 'Inter', sans-serif; /* Fuente para el nombre principal (h1) */
-    --font-family-heading-secondary: 'Inter', sans-serif; /* Fuente para títulos de sección y columna (h2, h3) */
-    --font-family-heading-tertiary: 'Inter', sans-serif; /* Fuente para subtítulos de ítems (h4) */
+    --color-text-primary: #333;
+    --color-text-secondary: #555;
+    --color-highlight: #134261;
+    --color-background-body: #dcdde1; /* Gris de fondo para resaltar el "papel" */
+    --color-background-paper: #ffffff;
+    
+    --font-family: 'Inter', sans-serif;
+    
+    /* Medidas A4 */
+    --p-width: 210mm;
+    --p-height: 297mm;
 }
 
-/* Estilos generales del cuerpo y fuente */
+/* 2. RESET Y BASES */
+* {
+    box-sizing: border-box;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+}
+
 body {
-    font-family: var(--font-family-paragraph);
-    line-height: 1.6;
+    font-family: var(--font-family);
+    line-height: 1.5;
     margin: 0;
     padding: 0;
-    background-color: var(--color-background-primary);
+    background-color: var(--color-background-body);
     color: var(--color-text-primary);
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
-/* Contenedor principal para centrar el contenido */
+/* 3. EL CONTENEDOR "PAPEL" (A4) */
 .container {
-    max-width: 90%;
+    width: var(--p-width);
+    min-height: var(--p-height);
     margin: 20px auto;
-    background-color: var(--color-background-secondary);
-    padding: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 12px; /* Bordes redondeados */
+    background-color: var(--color-background-paper);
+    padding: 15mm;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    border-radius: 4px; /* Un toque sutil para que parezca papel real */
 }
 
-/* Estilos del encabezado */
+/* 4. HEADER PROFESIONAL */
 .header {
-    background-color: var(--color-highlight); /* Usa la variable de color de resaltado */
-    color: #fff;
-    padding: 20px 30px; /* Ajusta el padding para el layout flex */
-    display: flex; /* Habilita flexbox */
-    align-items: center; /* Centra verticalmente los elementos */
-    justify-content:space-between; /* Distribuye el espacio entre los elementos */
-    border-radius: 12px;
-    /* Ajuste para que el header tenga el mismo ancho que el container */
-    max-width: 90%;
-    margin: 20px auto 0 auto; /* Asegura el margen superior y centrado */
+    background-color: var(--color-highlight);
+    color: #ffffff;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+    margin-bottom: 25px;
 }
 
 .header-info {
-    text-align: left;
-    flex-grow: 1; /* Permite que la información ocupe el espacio restante */
+    flex: 1;
 }
 
 .name {
-    font-family: var(--font-family-heading-primary);
-    font-size: 2.8em;
-    margin-bottom: 5px;
+    font-size: 2.5em;
+    margin: 0;
     font-weight: 700;
     letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .job-title {
-    font-family: var(--font-family-heading-secondary); /* Puedes usar secondary o paragraph */
-    font-size: 1.6em; /* Aumentamos el tamañ de la fuente para que sea más grande */
-    font-weight: 700; /* Lo ponemos en 700 para negrita, o puedes usar la palabra clave 'bold' */
-    margin-top: 0;
-    margin-bottom: 5px;
-    opacity: 0.9;
+    font-size: 1.5em;
+    margin: 5px 0;
+    font-weight: 600;
+    color: #a5d8ff; /* Azul claro para contraste */
 }
 
-.job-subtitle { /* Agregamos esta nueva regla para job-subtitle */
-    font-family: var(--font-family-paragraph); /* Asumiendo que quieres una fuente de párrafo regular */
-    font-size: 1.2em; /* Más pequeño que el job-title */
-    font-weight: 300; /* Más ligero que el job-title */
-    margin-top: 0;
-    margin-bottom: 10px; /* Ajusta el espaciado según necesites */
-    opacity: 0.7; /* Ligeramente menos opaco para que el job-title resalte más */
+.job-subtitle {
+    font-size: 1em;
+    font-weight: 300;
+    opacity: 0.8;
 }
 
 .contact-info {
-    font-family: var(--font-family-paragraph);
-    font-size: 1.1em;
-    opacity: 0.9;
-    margin-top: 0;
-    font-weight: 200;
-    color: #fff; /* Asegura que el texto de contacto sea blanco en el header */
-    display: flex; /* Para que los iconos y el texto se muestren en línea */
-    align-items: center; /* Centra verticalmente los elementos dentro de cada línea */
-    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas más pequeñas */
-    gap: 10px; /* Espacio entre cada elemento de contacto (icono + texto) */
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    font-size: 0.85em;
 }
 
-.contact-info .icon {
-    width: 20px; /* Ajusta este valor para cambiar el ancho del icono */
-    height: 20px; /* Ajusta este valor para cambiar la altura del icono */
-    vertical-align: middle; /* Esto ayuda a alinear el icono verticalmente con el texto */
-    margin-right: 5px; /* Un poco de espacio entre el icono y el texto */
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
+.contact-item img {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) invert(1); /* Iconos blancos */
+}
 
-/* Contenedor y estilo de la imagen de perfil */
+/* 5. IMAGEN DE PERFIL */
 .profile-image-container {
-    width: 200px;
-    height: 200px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
     overflow: hidden;
-    background-color: var(--color-background-secondary); /* Usa color de fondo secundario */
-    border: 5px solid var(--color-background-secondary); /* Borde blanco alrededor de la imagen */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    flex-shrink: 0; /* Evita que la imagen se encoja */
-    margin-left: 10px; /* Espacio a la izquierda de la imagen */
+    border: 4px solid rgba(255,255,255,0.2);
+    margin-left: 20px;
 }
 
 .profile-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
 }
 
-/* Estilos de las columnas principales de contenido */
+/* 6. LAYOUT DE COLUMNAS (GRID) */
 .main-content-columns {
-    display: flex;
-    gap: 10px; /* Espacio entre las columnas */
-    padding-top: 3px; /* Espacio superior para las columnas */
-}
-
-.column {
-    padding: 5px; /* Padding dentro de cada columna */
-    background-color: var(--color-background-secondary);
-    border-radius: 8px;
-}
-
-.left-column {
-    flex: 1; /* Ocupa 1 parte del espacio disponible (aprox 1/3) */
-    min-width: 250px; /* Ancho mínimo para evitar que se comprima demasiado */
-}
-
-.right-column {
-    flex: 2; /* Ocupa 2 partes del espacio disponible (aprox 2/3) */
-}
-
-/* Título principal de la columna (ej. Desarrollo Personal) */
-.column-main-title {
-    font-family: var(--font-family-heading-secondary);
-    font-size: 2em;
-    color: var(--color-highlight);
-    border-bottom: 3px solid var(--color-highlight);
-    padding-bottom: 10px;
-    margin-bottom: 25px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    text-align: center; /* Centra el título principal de la columna */
-}
-
-
-/* Estilos de las secciones dentro de las columnas */
-.section {
-    margin-bottom: 10px;
-    padding-top: 2px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
 }
 
 .section-title {
-    font-family: var(--font-family-heading-secondary);
-    font-size: 1.5em; /* Ligeramente más pequeño que el título de columna principal */
+    font-size: 1.2em;
     color: var(--color-highlight);
     border-bottom: 2px solid var(--color-highlight);
-    padding-bottom: 4px;
-    margin-bottom: 20px;
-    font-weight: 600;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
-/* Estilos de los elementos dentro de las secciones (ej. educación, experiencia) */
-.item {
-    margin-bottom: 5px;
-}
-
-.item h3 { /* H3 para subsecciones */
-    font-family: var(--font-family-heading-secondary);
-    font-size: 1.2em;
-    margin-bottom: 5px;
-    color: var(--color-text-primary);
-    font-weight: 600;
-}
-.item h4 { /* H4 para elementos individuales */
-    font-family: var(--font-family-heading-tertiary);
-    font-size: 1.1em; /* Reducido ligeramente para h4 */
-    margin-bottom: 5px;
-    color: var(--color-text-primary);
-    font-weight: 600;
-}
-
-.item p {
-    font-family: var(--font-family-paragraph);
-    margin: 0 0 5px 0;
-    font-size: 0.95em;
-    color: var(--color-text-secondary); /* Usa color de texto secundario */
-}
+/* 7. ELEMENTOS DE LISTA Y ITEMS */
+.item { margin-bottom: 15px; }
+.item h3 { font-size: 1.1em; margin: 0; color: #222; }
+.item h4 { font-size: 1em; margin: 2px 0; color: var(--color-highlight); }
+.item p { font-size: 0.9em; margin: 5px 0; color: var(--color-text-secondary); }
 
 .item ul {
-    list-style: none; /* Quita los puntos de la lista */
+    list-style: none;
     padding: 0;
-    margin: 0;
 }
 
 .item ul li {
-    font-family: var(--font-family-paragraph);
+    font-size: 0.85em;
+    padding-left: 15px;
     position: relative;
-    padding-left: 20px;
-    margin-bottom: 5px;
-    font-size: 0.9em; /* Ligeramente más pequeño */
-    color: var(--color-text-secondary); /* Usa color de texto secundario */
+    margin-bottom: 4px;
 }
 
-/* Agrega un punto personalizado a las listas */
 .item ul li::before {
     content: '•';
-    color: var(--color-highlight); /* Color del punto */
-    font-size: 1.1em;
+    color: var(--color-highlight);
     position: absolute;
     left: 0;
-    top: -2px;
+    font-weight: bold;
 }
 
-/* Estilos para responsividad */
+/* 8. AJUSTES PARA MÓVILES (WEB) */
 @media (max-width: 768px) {
-    .header {
-        flex-direction: column; /* Apila los elementos en pantallas pequeñas */
-        text-align: center;
-        padding: 20px 20px 0 20px; /* Ajusta el padding superior para la imagen */
-        margin: 20px auto 0 auto; /* Ajuste para centrar el header responsivamente */
-    }
-
-    .header-info {
-        text-align: center;
-        order: 2; /* Cambia el orden para que la info esté debajo de la imagen */
-    }
-
-    .profile-image-container {
-        margin-top: 0; /* Elimina el margen negativo si existe */
-        margin-left: 0; /* Centra la imagen */
-        margin-bottom: 20px; /* Espacio debajo de la imagen */
-        order: 1; /* Pone la imagen arriba */
-    }
-
-    .main-content-columns {
-        flex-direction: column; /* Apila las columnas en pantallas pequeñas */
-        gap: 20px; /* Reduce el espacio entre columnas apiladas */
-    }
-
-    .left-column, .right-column {
-        flex: auto; /* Permite que ocupen el ancho completo */
-        min-width: unset; /* Elimina el ancho mínimo */
-    }
-
     .container {
-        margin: 10px;
+        width: 95%;
+        margin: 10px auto;
         padding: 20px;
     }
-
-    .name {
-        font-size: 2em;
+    
+    .header {
+        flex-direction: column;
+        text-align: center;
     }
-
-    .job-title {
-        font-size: 1.2em;
+    
+    .profile-image-container {
+        margin: 15px 0 0 0;
     }
-
-    .contact-info {
-        font-size: 0.9em;
-    }
-
-    .column-main-title {
-        font-size: 1.8em;
-    }
-
-    .section-title {
-        font-size: 1.3em;
-    }
-
-    .item h3, .item h4 {
-        font-size: 1.1em;
+    
+    .main-content-columns {
+        grid-template-columns: 1fr;
     }
 }
 
-@media (max-width: 480px) {
-    .name {
-        font-size: 1.8em;
+/* 9. AJUSTES PARA IMPRESIÓN (PDF) */
+@media print {
+    body { background-color: white; }
+    .container {
+        width: 100%;
+        margin: 0;
+        box-shadow: none;
+        padding: 0;
     }
-
-    .job-title {
-        font-size: 1em;
-    }
-
-    .profile-image-container {
-        width: 120px;
-        height: 120px;
-    }
+    .print-btn { display: none; }
 }
