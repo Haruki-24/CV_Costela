@@ -5,12 +5,11 @@
     --color-text-primary: #333;
     --color-text-secondary: #555;
     --color-highlight: #134261;
-    --color-background-body: #dcdde1; /* Gris de fondo para resaltar el "papel" */
+    --color-background-body: #dcdde1; 
     --color-background-paper: #ffffff;
-    
     --font-family: 'Inter', sans-serif;
     
-    /* Medidas A4 */
+    /* Medidas base A4 */
     --p-width: 210mm;
     --p-height: 297mm;
 }
@@ -18,13 +17,13 @@
 /* 2. RESET Y BASES */
 * {
     box-sizing: border-box;
-    print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
 }
 
 body {
     font-family: var(--font-family);
-    line-height: 1.5;
+    line-height: 1.4;
     margin: 0;
     padding: 0;
     background-color: var(--color-background-body);
@@ -32,28 +31,29 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* 3. EL CONTENEDOR "PAPEL" (A4) */
-.container {
-    width: var(--p-width);
-    min-height: var(--p-height);
+/* 3. EL CONTENEDOR "PAPEL" (80% en pantalla, max A4) */
+.container-wrapper {
+    width: 80%; /* Requisito: 80% del ancho en pantallas */
+    max-width: var(--p-width); 
     margin: 20px auto;
     background-color: var(--color-background-paper);
-    padding: 15mm;
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     border-radius: 4px;
+    overflow: hidden;
+}
+
+.main-content {
+    padding: 10mm 15mm;
 }
 
 /* 4. HEADER PROFESIONAL */
 .header {
     background-color: var(--color-highlight);
     color: #ffffff;
-    padding: 25px 30px;
+    padding: 20px 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-radius: 12px;
-    width: var(--p-width); /* Mismo ancho que el contenedor */
-    margin: 20px auto 0 auto;
 }
 
 .header-info {
@@ -61,7 +61,7 @@ body {
 }
 
 .name {
-    font-size: 2.5em;
+    font-size: 2.2em;
     margin: 0;
     font-weight: 700;
     letter-spacing: 1px;
@@ -69,45 +69,48 @@ body {
 }
 
 .job-title {
-    font-size: 1.5em;
-    margin: 5px 0;
+    font-size: 1.3em;
+    margin: 2px 0;
     font-weight: 600;
-    color: #a5d8ff; /* Azul claro para contraste */
+    color: #a5d8ff;
 }
 
 .job-subtitle {
-    font-size: 1.1em;
+    font-size: 1em;
     font-weight: 300;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     opacity: 0.9;
 }
 
 .contact-info {
     display: flex;
-    gap: 15px;
+    gap: 12px;
     flex-wrap: wrap;
-    margin: 5px 0;
-    font-size: 0.85em;
+    margin-top: 5px;
+    font-size: 0.8em;
 }
 
-.contact-info .icon {
-    width: 16px;
-    height: 16px;
-    margin-right: 4px;
-    vertical-align: middle;
-    filter: brightness(0) invert(1); /* Iconos blancos */
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.icon {
+    width: 14px;
+    height: 14px;
+    filter: brightness(0) invert(1);
 }
 
 /* 5. IMAGEN DE PERFIL */
 .profile-image-container {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     overflow: hidden;
-    border: 4px solid rgba(255,255,255,0.3);
+    border: 3px solid rgba(255,255,255,0.3);
     margin-left: 20px;
     flex-shrink: 0;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .profile-image {
@@ -119,63 +122,56 @@ body {
 /* 6. LAYOUT DE COLUMNAS (GRID) */
 .main-content-columns {
     display: grid;
-    grid-template-columns: 1fr 2fr; /* 1/3 y 2/3 */
-    gap: 30px;
-}
-
-.column {
-    padding: 10px 0;
+    grid-template-columns: 1fr 2fr;
+    gap: 25px;
 }
 
 .section {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 .section-title {
-    font-size: 1.2em;
+    font-size: 1.1em;
     color: var(--color-highlight);
     border-bottom: 2px solid var(--color-highlight);
-    padding-bottom: 5px;
-    margin-bottom: 15px;
+    padding-bottom: 3px;
+    margin-bottom: 10px;
     font-weight: 700;
     text-transform: uppercase;
 }
 
 /* 7. ELEMENTOS DE LISTA Y ITEMS */
-.item { margin-bottom: 18px; }
+.item { margin-bottom: 12px; }
 
 .item h3 { 
-    font-size: 1.1em; 
-    margin: 0 0 5px 0; 
+    font-size: 1em; 
+    margin: 0 0 2px 0; 
     color: var(--color-highlight); 
-    font-weight: 700;
 }
 
 .item h4 { 
-    font-size: 1em; 
-    margin: 0 0 3px 0; 
+    font-size: 0.95em; 
+    margin: 0; 
     color: #222; 
-    font-weight: 600;
 }
 
 .item p { 
-    font-size: 0.9em; 
-    margin: 0 0 8px 0; 
-    color: var(--color-text-secondary); 
-    font-style: italic;
+    font-size: 0.85em; 
+    margin: 0 0 5px 0; 
+    color: var(--color-text-secondary);
 }
 
 .item ul {
     list-style: none;
     padding: 0;
-    margin: 5px 0;
+    margin: 0;
 }
 
 .item ul li {
-    font-size: 0.85em;
-    padding-left: 15px;
+    font-size: 0.82em;
+    padding-left: 12px;
     position: relative;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
     color: var(--color-text-secondary);
 }
 
@@ -184,24 +180,23 @@ body {
     color: var(--color-highlight);
     position: absolute;
     left: 0;
-    font-weight: bold;
 }
 
-/* 8. AJUSTES PARA MÓVILES (WEB) */
+/* 8. AJUSTES PARA MÓVILES (Adaptativo) */
 @media (max-width: 850px) {
-    .header, .container {
+    .container-wrapper {
         width: 95%;
         margin: 10px auto;
-        padding: 20px;
     }
     
     .header {
         flex-direction: column;
         text-align: center;
+        padding: 20px;
     }
     
     .profile-image-container {
-        margin: 20px 0 0 0;
+        margin: 15px 0 0 0;
     }
     
     .main-content-columns {
@@ -213,19 +208,30 @@ body {
     }
 }
 
-/* 9. AJUSTES PARA IMPRESIÓN (PDF) */
+/* 9. AJUSTES PARA IMPRESIÓN (Forzar A4 única hoja) */
 @media print {
-    body { background-color: white; }
-    .header, .container {
-        width: 100%;
+    @page {
+        size: A4;
         margin: 0;
-        box-shadow: none;
-        border-radius: 0;
+    }
+    body { 
+        background-color: white; 
+    }
+    .container-wrapper {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        height: 100vh;
     }
     .header {
-        padding: 15mm; /* Ajuste para que coincida con el padding del container */
+        padding: 10mm 15mm;
     }
-    .profile-image-container {
-        border: 2px solid #eee;
+    .main-content {
+        padding: 5mm 15mm;
+    }
+    .section {
+        margin-bottom: 10px;
     }
 }
