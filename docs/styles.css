@@ -4,10 +4,11 @@
 :root {
     --color-text-primary: #333;
     --color-text-secondary: #555;
-    --color-highlight: #134261;
+    --color-highlight: #1A1A1A;
     --color-background-body: #dcdde1; 
     --color-background-paper: #ffffff;
     --font-family: 'Inter', sans-serif;
+    --color-line-border:#87D37C;
 }
 
 /* 2. RESET Y BASES */
@@ -68,7 +69,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-radius: 8px 8px 0 0;
+    border-radius: 8px 8px;
     border-bottom: 4px solid var(--color-background-body);
 }
 
@@ -85,7 +86,7 @@ body {
 .container {
     flex-grow: 1;
     background-color: var(--color-background-paper);
-    border-radius: 0 0 8px 8px;
+    border-radius: 8px 8px;
 }
 
 /* 5. CONTENIDO DEL ENCABEZADO */
@@ -100,14 +101,14 @@ body {
     letter-spacing: 1px;
     text-transform: uppercase;
     line-height: 1.1;
+    color: var(--color-line-border);
 }
 
 .job-title {
     font-size: 1.6em;
     margin: 8px 0 2px 0;
     font-weight: 600;
-    color: #a5d8ff;
-}
+  }
 
 .job-subtitle {
     font-size: 1.3em;
@@ -122,6 +123,7 @@ body {
     flex-wrap: wrap;
     margin-top: 10px;
     font-size: 1.1em;
+    color: #c9c7c7;
 }
 
 /* Estilo para los íconos dentro de contact-info */
@@ -138,7 +140,7 @@ body {
     height: 150px;
     border-radius: 50%;
     overflow: hidden;
-    border: 4px solid rgba(255,255,255,0.2);
+    border: 4px solid var(--color-line-border);
     margin-left: 30px;
     flex-shrink: 0;
 }
