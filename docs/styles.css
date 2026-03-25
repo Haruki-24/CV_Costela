@@ -8,10 +8,6 @@
     --color-background-body: #dcdde1; 
     --color-background-paper: #ffffff;
     --font-family: 'Inter', sans-serif;
-    
-    /* Medidas base A4 */
-    --p-width: 210mm;
-    --p-height: 297mm;
 }
 
 /* 2. RESET Y BASES */
@@ -29,87 +25,121 @@ body {
     background-color: var(--color-background-body);
     color: var(--color-text-primary);
     -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
 }
 
-/* 3. EL CONTENEDOR "PAPEL" (80% en pantalla, max A4) */
-.container-wrapper {
-    width: 80%; /* Requisito: 80% del ancho en pantallas */
-    max-width: var(--p-width); 
-    margin: 20px auto;
-    background-color: var(--color-background-paper);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    border-radius: 4px;
-    overflow: hidden;
+/* 3. ESTRUCTURA RESPONSIVA (CONTENEDOR DE PAPEL) */
+.cv-paper {
+    background-color: var(--color-background-body);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    margin: 20px 0;
 }
 
-.main-content {
-    padding: 10mm 15mm;
+@media (min-width: 801px) {
+    .cv-paper {
+        width: 80vw;
+        max-width: 1200px;
+    }
 }
 
-/* 4. HEADER PROFESIONAL */
+@media (max-width: 800px) {
+    .cv-paper {
+        width: 100%;
+        margin: 0;
+        box-shadow: none;
+        background-color: var(--color-background-body)
+    }
+}
+
+/* 4. HEADER Y CONTENIDO (PADDING UNIFICADO) */
+.header, .container {
+    padding: 20px;
+    width: 100%;
+}
+
 .header {
     background-color: var(--color-highlight);
     color: #ffffff;
-    padding: 20px 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 4px solid var(--color-background-body);
 }
 
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .profile-image-container {
+        margin: 20px 0 0 0;
+    }
+}
+
+.container {
+    flex-grow: 1;
+    background-color: var(--color-background-paper);
+    border-radius: 0 0 8px 8px;
+}
+
+/* 5. CONTENIDO DEL ENCABEZADO */
 .header-info {
     flex: 1;
 }
 
 .name {
-    font-size: 2.2em;
+    font-size: 2.4em;
     margin: 0;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
+    line-height: 1.1;
 }
 
 .job-title {
-    font-size: 1.3em;
-    margin: 2px 0;
+    font-size: 1.6em;
+    margin: 8px 0 2px 0;
     font-weight: 600;
     color: #a5d8ff;
 }
 
 .job-subtitle {
-    font-size: 1em;
-    font-weight: 300;
-    margin-bottom: 10px;
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 15px;
     opacity: 0.9;
 }
 
 .contact-info {
     display: flex;
-    gap: 12px;
+    gap: 15px;
     flex-wrap: wrap;
-    margin-top: 5px;
-    font-size: 0.8em;
+    margin-top: 10px;
+    font-size: 1.1em;
 }
 
-.contact-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+/* Estilo para los íconos dentro de contact-info */
+.contact-info .icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 4px;
 }
 
-.icon {
-    width: 14px;
-    height: 14px;
-    filter: brightness(0) invert(1);
-}
-
-/* 5. IMAGEN DE PERFIL */
+/* 6. IMAGEN DE PERFIL */
 .profile-image-container {
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     overflow: hidden;
-    border: 3px solid rgba(255,255,255,0.3);
-    margin-left: 20px;
+    border: 4px solid rgba(255,255,255,0.2);
+    margin-left: 30px;
     flex-shrink: 0;
 }
 
@@ -119,47 +149,39 @@ body {
     object-fit: cover;
 }
 
-/* 6. LAYOUT DE COLUMNAS (GRID) */
+/* 7. COLUMNAS DE CONTENIDO */
 .main-content-columns {
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 25px;
+    grid-template-columns: 1fr 2.2fr;
+    gap: 40px;
+}
+
+@media (max-width: 800px) {
+    .main-content-columns {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 }
 
 .section {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .section-title {
-    font-size: 1.1em;
+    font-size: 1.2em;
     color: var(--color-highlight);
     border-bottom: 2px solid var(--color-highlight);
-    padding-bottom: 3px;
-    margin-bottom: 10px;
+    padding-bottom: 4px;
+    margin-bottom: 15px;
     font-weight: 700;
     text-transform: uppercase;
 }
 
-/* 7. ELEMENTOS DE LISTA Y ITEMS */
-.item { margin-bottom: 12px; }
-
-.item h3 { 
-    font-size: 1em; 
-    margin: 0 0 2px 0; 
-    color: var(--color-highlight); 
-}
-
-.item h4 { 
-    font-size: 0.95em; 
-    margin: 0; 
-    color: #222; 
-}
-
-.item p { 
-    font-size: 0.85em; 
-    margin: 0 0 5px 0; 
-    color: var(--color-text-secondary);
-}
+/* 8. ELEMENTOS DE LISTA */
+.item { margin-bottom: 18px; }
+.item h3 { font-size: 1.05em; margin: 10px 0 4px 0; color: var(--color-highlight); }
+.item h4 { font-size: 1em; margin: 0; color: #222; }
+.item p { font-size: 0.9em; margin: 2px 0 8px 0; color: var(--color-text-secondary); }
 
 .item ul {
     list-style: none;
@@ -168,11 +190,10 @@ body {
 }
 
 .item ul li {
-    font-size: 0.82em;
-    padding-left: 12px;
+    font-size: 0.88em;
+    padding-left: 15px;
     position: relative;
-    margin-bottom: 3px;
-    color: var(--color-text-secondary);
+    margin-bottom: 5px;
 }
 
 .item ul li::before {
@@ -182,56 +203,32 @@ body {
     left: 0;
 }
 
-/* 8. AJUSTES PARA MÓVILES (Adaptativo) */
-@media (max-width: 850px) {
-    .container-wrapper {
-        width: 95%;
-        margin: 10px auto;
-    }
-    
-    .header {
-        flex-direction: column;
-        text-align: center;
-        padding: 20px;
-    }
-    
-    .profile-image-container {
-        margin: 15px 0 0 0;
-    }
-    
-    .main-content-columns {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-info {
-        justify-content: center;
-    }
-}
-
-/* 9. AJUSTES PARA IMPRESIÓN (Forzar A4 única hoja) */
+/* 9. AJUSTES PARA IMPRESIÓN (FORZAR A4) */
 @media print {
     @page {
-        size: A4;
+        size: A4 portrait;
         margin: 0;
     }
-    body { 
-        background-color: white; 
+    
+    body {
+        background-color: white;
     }
-    .container-wrapper {
+
+    .cv-paper {
         width: 100% !important;
         max-width: none !important;
         margin: 0 !important;
         box-shadow: none !important;
         border-radius: 0 !important;
-        height: 100vh;
+        display: block;
     }
-    .header {
+
+    .header, .container {
         padding: 10mm 15mm;
+        border-radius: 0 !important;
     }
-    .main-content {
-        padding: 5mm 15mm;
-    }
-    .section {
-        margin-bottom: 10px;
-    }
+
+    .name { font-size: 2em; }
+    .main-content-columns { gap: 20px; }
+    .section { margin-bottom: 15px; }
 }
