@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gonzalo Costela - CV</title>
+    <!-- Tailwind CSS (Vía CDN para mantenerlo simple) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* CSS Especial para cuando se descargue el PDF */
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; color: black; }
+            .print-shadow-none { box-shadow: none !important; border: none !important; }
+            .print-break { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans antialiased p-4 md:p-8">
+
+    <!-- BOTONES FLOTANTES (No se imprimen) -->
+    <div class="no-print fixed top-4 right-4 flex gap-2 z-50">
+        <button onclick="toggleLanguage()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow transition">
+            🌐 <span id="langBtnText">EN</span>
+        </button>
+        <button onclick="window.print()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow transition">
+            📄 PDF
+        </button>
+    </div>
+
+    <!-- CONTENEDOR DEL CV -->
+    <div class="max-w-4xl mx-auto bg-white shadow-xl rounded-lg p-8 print-shadow-none print:p-0">
+        
+        <!-- Encabezado -->
+        <header class="border-b-2 border-blue-600 pb-4 mb-6 text-center md:text-left">
+            <h1 id="cv-name" class="text-4xl font-extrabold text-gray-900 tracking-tight"></h1>
+            <h2 id="cv-title" class="text-xl text-blue-600 font-semibold mt-1"></h2>
+            <div id="cv-contact" class="text-sm text-gray-600 mt-2"></div>
+            <div id="cv-location" class="text-sm text-gray-500 mt-1 italic"></div>
+        </header>
+
+        <!-- Perfil -->
+        <section class="mb-6 print-break">
+            <h3 id="title-summary" class="text-lg font-bold text-gray-800 uppercase border-b border-gray-300 mb-2"></h3>
+            <p id="text-summary" class="text-sm leading-relaxed text-justify"></p>
+        </section>
+
+        <!-- Stack -->
+        <section class="mb-6 print-break">
+            <h3 id="title-stack" class="text-lg font-bold text-gray-800 uppercase border-b border-gray-300 mb-2"></h3>
+            <ul id="list-stack" class="text-sm space-y-1"></ul>
+        </section>
+
+        <!-- Experiencia -->
+        <section class="mb-6">
+            <h3 id="title-exp" class="text-lg font-bold text-gray-800 uppercase border-b border-gray-300 mb-3"></h3>
+            <div id="list-exp" class="space-y-4"></div>
+        </section>
+
+        <!-- Proyectos -->
+        <section class="mb-6 print-break">
+            <h3 id="title-proj" class="text-lg font-bold text-gray-800 uppercase border-b border-gray-300 mb-3"></h3>
+            <div id="list-proj" class="space-y-3"></div>
+        </section>
+
+    </div>
+
+    <!-- Lógica de JavaScript -->
+    <script src="cv/data.js"></script>
+    <script>
+        let currentLang = 'es';
+
+        function renderCV() {
+            const data = cvData[currentLang];
+
+            // Encabezado
+            document.getElementById('cv-name').textContent = data.name;
+            document.getElementById('cv-title').textContent = data.title;
+            document.getElementById('cv-contact').textContent = data.contact;
+            document.getElementById('cv-location').textContent = data.location;
+
+            // Perfil
+            document.getElementById('title-summary').textContent = data.summaryTitle;
+            document.getElementById('text-summary').textContent = data.summaryText;
+
+            // Stack
+            document.getElementById('title-stack').textContent = data.stackTitle;
+            const listStack = document.getElementById('list-stack');
+            listStack.innerHTML = '';
+            data.stackData.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${item.label}:</strong> ${item.value}`;
+                listStack.appendChild(li);
+            });
+
+            // Experiencia
+            document.getElementById('title-exp').textContent = data.expTitle;
+            const listExp = document.getElementById('list-exp');
+            listExp.innerHTML = '';
+            data.jobs.forEach(job => {
+                const div = document.createElement('div');
+                div.className = 'mb-4 print-break';
+                let bulletsHtml = job.bullets.map(b => `<li class="text-sm text-gray-700 ml-4 list-disc mb-1">${b}</li>`).join('');
+                div.innerHTML = `
+                    <div class="flex flex-col md:flex-row md:justify-between mb-1">
+                        <span class="font-bold text-gray-900">${job.role}</span>
+                        <span class="text-sm text-gray-600 font-semibold md:text-right">${job.date}</span>
+                    </div>
+                    <div class="text-sm text-blue-600 italic mb-2">${job.company}</div>
+                    <ul>${bulletsHtml}</ul>
+                `;
+                listExp.appendChild(div);
+            });
+
+            // Proyectos
+            document.getElementById('title-proj').textContent = data.projTitle;
+            const listProj = document.getElementById('list-proj');
+            listProj.innerHTML = '';
+            data.projects.forEach(proj => {
+                const div = document.createElement('div');
+                div.className = 'mb-2';
+                div.innerHTML = `
+                    <div class="font-bold text-gray-900 text-sm">${proj.name}</div>
+                    <div class="text-sm text-gray-700">${proj.desc}</div>
+                `;
+                listProj.appendChild(div);
+            });
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            document.getElementById('langBtnText').textContent = currentLang === 'es' ? 'EN' : 'ES';
+            renderCV();
+        }
+
+        // Renderizar al cargar la página
+        window.onload = renderCV;
+    </script>
+</body>
+</html>
