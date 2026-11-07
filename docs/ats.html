@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gonzalo Costela - CV ATS</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* CSS Especial para cuando se descargue el PDF */
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; color: black; padding: 0 !important; }
+            .print-shadow-none { box-shadow: none !important; border: none !important; }
+            .print-padding { padding: 0 !important; }
+            .print-break { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans antialiased p-4 md:p-8">
+
+    <!-- BARRA SUPERIOR DE BOTONES (No flota, empuja el contenido) -->
+    <div class="no-print max-w-3xl mx-auto mb-4 flex flex-wrap justify-end gap-2">
+        <button onclick="toggleLanguage()" class="bg-gray-800 hover:bg-black text-white font-bold py-2 px-4 rounded shadow transition">
+            🌐 <span id="langBtnText">EN</span>
+        </button>
+        
+        <!-- ENLACE DE VUELTA AL INDEX (VISTA VISUAL) -->
+        <a href="index.html" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow transition no-underline flex items-center">
+            👁️ Modo Visual
+        </a>
+        
+        <button onclick="window.print()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow transition">
+            📄 PDF
+        </button>
+    </div>
+
+    <!-- CONTENEDOR DEL CV (MÁS ESTRECHO PARA 1 SOLA COLUMNA) -->
+    <div class="max-w-3xl mx-auto bg-white shadow-xl rounded-lg p-8 print-shadow-none print-padding">
+        
+        <!-- ENCABEZADO (Texto puro, sin imágenes) -->
+        <header class="border-b-2 border-gray-800 pb-4 mb-6 text-center md:text-left">
+            <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">GONZALO COSTELA</h1>
+            <h2 class="text-xl text-gray-700 font-semibold mt-1" id="cv-title">Data / AI Engineer | Machine Learning & Optimization</h2>
+            <div class="text-sm text-gray-600 mt-2">
+                Guadalajara, Mexico | <a href="https://wa.me/529845015915">WA: +52 984 501 5915</a> | gonzalocostela@gmail.com<br>
+                <a href="https://www.linkedin.com/in/gonzalocostela/">linkedin.com/in/gonzalocostela</a> | <a href="https://github.com/Haruki-24">github.com/Haruki-24</a>
+            </div>
+        </header>
+
+        <!-- 1. PERFIL -->
+        <section class="mb-6 print-break">
+            <h3 id="title-profile" class="text-lg font-bold text-gray-800 uppercase border-b border-gray-300 mb-2"></h3>
+            <div id="text-profile" class="text-sm leading-relaxed text-justify text-gray-700"></div>
+        </section>
+
+        <!-- 2. EXPERIENCIA -->
+        <section class="mb-6">
+            <h3 id="title-exp" class="text-lg font-bold text-gray-800 uppercase border-b border-gray-300 mb-3"></h3>
+            <div id="list-exp" class="space-y-4"></div>
+        </section>
+
+        <!-- 3. PROYECTOS -->
+        <section class="mb-6 print-break">
+            <h3 id="title-proj" class="text-lg font-bold text-gray-800 uppercase border-b border-gray-300 mb-3"></h3>
+            <div id="list-proj" class="space-y-3"></div>
+        </section>
+
+        <!-- 4. STACK TECNOLÓGICO -->
+        <section class="mb-6 print-break">
+            <h3 id="title-stack" class="text-lg font-bold text-gray-800 uppercase border-b border-gray-300 mb-2"></h3>
+            <ul id="list-stack" class="text-sm space-y-1 text-gray-700"></ul>
+        </section>
+
+        <!-- 5. EDUCACIÓN Y CERTIFICACIONES -->
+        <section class="mb-6 print-break">
+            <h3 id="title-edu" class="text-lg font-bold text-gray-800 uppercase border-b border-gray-300 mb-2"></h3>
+            <div id="list-edu" class="text-sm text-gray-700 mb-4"></div>
+
+            <h3 id="title-certs" class="text-lg font-bold text-gray-800 uppercase border-b border-gray-300 mb-2"></h3>
+            <ul id="list-certs" class="text-sm space-y-1 text-gray-700"></ul>
+        </section>
+
+        <!-- 6. IDIOMAS Y SOFT SKILLS -->
+        <section class="mb-6 print-break">
+            <h3 id="title-langs" class="text-lg font-bold text-gray-800 uppercase border-b border-gray-300 mb-2"></h3>
+            <ul id="list-langs" class="text-sm space-y-1 text-gray-700 mb-4"></ul>
+
+            <h3 id="title-soft" class="text-lg font-bold text-gray-800 uppercase border-b border-gray-300 mb-2"></h3>
+            <ul id="list-soft" class="text-sm space-y-1 text-gray-700"></ul>
+        </section>
+
+    </div>
+
+    <!-- LÓGICA JAVASCRIPT (Conectada al nuevo data.js) -->
+    <script src="data.js"></script>
+    <script>
+        let currentLang = 'es';
+
+        function renderCV() {
+            // Verificamos si cvData existe
+            if (typeof cvData === 'undefined') {
+                console.error("Error: data.js no se ha cargado.");
+                return;
+            }
+
+            const data = cvData[currentLang];
+
+            // Actualizar Título de la ventana
+            document.title = currentLang === 'es' ? "Gonzalo Costela - CV ATS" : "Gonzalo Costela - Resume ATS";
+
+            // Traducir Títulos de las secciones
+            document.getElementById('title-profile').textContent = data.sections.profile;
+            document.getElementById('title-exp').textContent = data.sections.exp;
+            document.getElementById('title-stack').textContent = data.sections.stack;
+            document.getElementById('title-edu').textContent = data.sections.edu;
+            document.getElementById('title-certs').textContent = data.sections.certs;
+            document.getElementById('title-langs').textContent = data.sections.langs;
+            document.getElementById('title-soft').textContent = data.sections.soft;
+
+            // 1. Renderizar Perfil
+            document.getElementById('text-profile').innerHTML = data.profile.map(p => `<p class="mb-2">${p}</p>`).join('');
+
+            // 2. Renderizar Experiencia
+            document.getElementById('list-exp').innerHTML = data.exp.map(job => `
+                <div class="mb-4">
+                    <div class="font-bold text-gray-900">${job.role} - ${job.company}</div>
+                    <div class="text-sm text-gray-600 mb-1">${job.date}</div>
+                    <ul class="list-disc ml-5 text-sm text-gray-700">
+                        ${job.bullets.map(b => `<li>${b}</li>`).join('')}
+                    </ul>
+                </div>
+            `).join('');
+
+            // 3. Renderizar Proyectos
+            document.getElementById('title-proj').textContent = data.projTitle;
+            document.getElementById('list-proj').innerHTML = data.projects.map(p => `
+                <div class="mb-2 text-sm text-gray-700">
+                    <strong>${p.name}:</strong> ${p.desc}
+                </div>
+            `).join('');
+
+            // 4. Renderizar Stack
+            document.getElementById('list-stack').innerHTML = data.stack.map(s => `<li><strong>${s.label}:</strong> ${s.value}</li>`).join('');
+
+            // 5. Renderizar Educación y Certificaciones
+            document.getElementById('list-edu').innerHTML = data.edu.map(e => `<div class="mb-2"><strong>${e.title}</strong><br>${e.desc}</div>`).join('');
+            document.getElementById('list-certs').innerHTML = data.certs.map(c => `<li>• ${c}</li>`).join('');
+
+            // 6. Renderizar Idiomas y Soft Skills
+            document.getElementById('list-langs').innerHTML = data.langs.map(l => `<li>• ${l}</li>`).join('');
+            document.getElementById('list-soft').innerHTML = data.soft.map(s => `<li>• ${s}</li>`).join('');
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            document.getElementById('langBtnText').textContent = currentLang === 'es' ? 'EN' : 'ES';
+            renderCV();
+        }
+
+        window.onload = renderCV;
+    </script>
+</body>
+</html>
