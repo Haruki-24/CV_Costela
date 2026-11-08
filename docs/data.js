@@ -70,6 +70,7 @@ const cvData = {
         bullets: [
           "<em>Progresión: Asistente Administrativo (2015) ➔ Ing. de Aplicaciones ALS (2020) ➔ Gerente de Operaciones & Especialista PCP (2021-2023).</em>",
           "<strong>Gerente de Operaciones & Especialista PCP (2021–2023):</strong> Dirigí la estrategia de bases operativas, logística técnica e ingeniería de aplicaciones PCP en las principales cuencas de Argentina (Neuquén, Chubut, Santa Cruz). Diseñé sistemas PCP de alta eficiencia con PC-Pump (C-FER) y Rodstar. Actué como enlace técnico ante operadoras y lideré I+D para adaptar tecnologías de estatores OLT a rotores PCM HR.",
+          "<strong>Gestión de Calidad (QHSE):</strong> Fui responsable del Sistema de Gestión de Calidad (SGC), asegurando el cumplimiento de normativas ISO 9001 e ISO 14000, la certificación de equipos/procedimientos y liderando la respuesta a auditorías internas y externas.",
           "<strong>Ingeniero de Aplicaciones ALS (2020):</strong> Diseñé soluciones técnicas adaptadas a cada pozo, realicé análisis de fallas, ensayos destructivos y reportes de optimización para clientes.",
           "<strong>Administración y Almacén (2018–2019):</strong> Supervisé la cadena de suministro, control de inventarios y auditorías de procesos internos."
         ]
@@ -175,6 +176,7 @@ const cvData = {
         bullets: [
           "<em>Career growth: Administrative Assistant (2015) ➔ ALS Application Engineer (2020) ➔ Operations Manager & PCP Specialist (2021-2023).</em>",
           "<strong>Operations Manager & PCP Specialist (2021–2023):</strong> I managed operational base strategies, technical logistics, and PCP application engineering across Argentina's main basins (Neuquén, Chubut, Santa Cruz). I designed high-efficiency PCP systems using PC-Pump (C-FER) and Rodstar. I was the main technical contact for operators and led R&D projects to adapt OLT stator technology to PCM HR rotors.",
+          "<strong>Quality & Compliance (QHSE):</strong> Managed the Quality Management System (QMS), ensuring ISO 9001 and ISO 14000 compliance, leading equipment/procedure certifications, and responding to internal and external audits.",
           "<strong>ALS Application Engineer (2020):</strong> I designed technical solutions for each well, performed failure analysis, destructive testing, and delivered optimization reports to clients.",
           "<strong>Administration & Warehouse (2018–2019):</strong> I managed the supply chain, inventory control, and internal process audits."
         ]
